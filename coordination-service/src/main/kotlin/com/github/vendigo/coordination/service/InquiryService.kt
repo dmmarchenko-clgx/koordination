@@ -1,11 +1,12 @@
 package com.github.vendigo.coordination.service
 
 import com.github.vendigo.coordination.client.TtClient
+import com.github.vendigo.coordination.client.TtClientWrapper
 import com.github.vendigo.coordination.model.*
 import org.springframework.stereotype.Service
 
 @Service
-class InquiryService(val ttClient: TtClient) {
+class InquiryService(val ttClient: TtClient, val ttClientWrapper: TtClientWrapper) {
 
     fun processInquiry(request: InquiryRequest): InquiryResponse {
         val transactionId = ttClient.generateId()
