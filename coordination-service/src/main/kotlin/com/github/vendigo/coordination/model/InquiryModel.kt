@@ -1,6 +1,5 @@
 package com.github.vendigo.coordination.model
 
-import kotlinx.serialization.Serializable
 import java.time.LocalDate
 import java.time.LocalDateTime
 
@@ -18,10 +17,8 @@ data class ConsumerHistory(
     val addresses: List<Address> = listOf(), val previousInquiries: List<PreviousInquiry> = listOf()
 )
 
-@Serializable
 data class ConsumerDetails(val ssn: String, val dateOfBirth: LocalDate, val firstName: String, val lastName: String)
 
-@Serializable
 data class Address(val city: String, val state: String, val postalCode: String)
 
 data class PreviousInquiry(val mid: Long, val inquiryDate: LocalDateTime)

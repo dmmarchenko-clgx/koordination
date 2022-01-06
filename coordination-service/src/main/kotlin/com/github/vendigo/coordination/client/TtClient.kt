@@ -1,25 +1,21 @@
 package com.github.vendigo.coordination.client
 
-import com.github.vendigo.coordination.model.Address
-import com.github.vendigo.coordination.model.ConsumerDetails
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import com.github.vendigo.coordination.model.*
+import retrofit2.http.*
 
 interface TtClient {
 
     @POST("/consumer/normalize")
     suspend fun normalizeConsumer(@Body consumer: ConsumerDetails): ConsumerDetails
-/*
-    @PostMapping("/consumer/validate")
-    fun validateConsumer(@RequestBody consumer: ConsumerDetails): List<String>
 
-    @PostMapping("/consumer/match")
-    fun matchConsumer(@RequestBody matchRequest: ConsumerMatchRequest): Long
+    @POST("/consumer/validate")
+    suspend fun validateConsumer(@Body consumer: ConsumerDetails): List<String>
 
-    @GetMapping("/consumer/{consumerMasterId}/history")
-    fun getConsumerHistory(@PathVariable("consumerMasterId") consumerMasterId: Long): ConsumerHistory*/
+    @POST("/consumer/match")
+    suspend fun matchConsumer(@Body matchRequest: ConsumerMatchRequest): Long
+
+    @GET("/consumer/{consumerMasterId}/history")
+    suspend fun getConsumerHistory(@Path("consumerMasterId") consumerMasterId: Long): ConsumerHistory
 
     @GET("/address/standardize")
     suspend fun standardizeAddress(@Query("rawAddress") rawAddress: String): Address
@@ -27,15 +23,15 @@ interface TtClient {
     @GET("/generate-id")
     suspend fun generateId(): String
 
-    /*@GetMapping("/merchant/{mid}/configuration")
-    fun getMerchantConfiguration(@PathVariable("mid") mid: Long): MerchantConfiguration
+    @GET("/merchant/{mid}/configuration")
+    suspend fun getMerchantConfiguration(@Path("mid") mid: Long): MerchantConfiguration
 
-    @GetMapping("/third-party-data")
-    fun requestThirdPartyData(@RequestParam("ssn") ssn: String): String
+    @GET("/third-party-data")
+    suspend fun requestThirdPartyData(@Query("ssn") ssn: String): String
 
-    @GetMapping("/score")
-    fun requestScore(@RequestParam("consumerMasterId") consumerMasterId: Long): String
+    @GET("/score")
+    suspend fun requestScore(@Query("consumerMasterId") consumerMasterId: Long): String
 
-    @PostMapping("/inquiry")
-    fun saveInquiry(@RequestBody inquiry: SaveInquiryRequest): Long*/
+    @POST("/inquiry")
+    suspend fun saveInquiry(@Body inquiry: SaveInquiryRequest): Long
 }
