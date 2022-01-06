@@ -1,5 +1,6 @@
-package com.github.vendigo.coordinationservice
+package com.github.vendigo.coordination.client
 
+import com.github.vendigo.coordination.model.*
 import org.springframework.cloud.openfeign.FeignClient
 import org.springframework.web.bind.annotation.*
 

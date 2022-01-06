@@ -13,6 +13,8 @@ class Controller {
 
     @PostMapping("/consumer/normalize")
     fun normalizeConsumer(@RequestBody consumer: ConsumerDetails): ConsumerDetails {
+        log.info("Normalizing consumer")
+        delay(50)
         return consumer
             .copy(
                 firstName = consumer.firstName.uppercase(),
@@ -23,12 +25,14 @@ class Controller {
     @PostMapping("/consumer/validate")
     fun validateConsumer(@RequestBody consumer: ConsumerDetails): List<String> {
         log.info("Validating consumer")
+        delay(100)
         return listOf()
     }
 
     @PostMapping("/consumer/match")
     fun matchConsumer(@RequestBody matchRequest: ConsumerMatchRequest): Long {
         log.info("Matching consumer")
+        delay(100)
         return 10
     }
 
@@ -46,6 +50,7 @@ class Controller {
     @GetMapping("/address/standardize")
     fun standardizeAddress(@RequestParam("rawAddress") rawAddress: String): Address {
         log.info("Standardizing address")
+        delay(50)
         val (city, state, postalCode) = rawAddress.split(", ")
         return Address(city, state, postalCode)
     }
@@ -53,12 +58,14 @@ class Controller {
     @GetMapping("/generate-id")
     fun generateId(): String {
         log.info("Generating id")
+        delay(50)
         return generateRandomId()
     }
 
     @GetMapping("/merchant/{mid}/configuration")
     fun getMerchantConfiguration(@PathVariable("mid") mid: Long): MerchantConfiguration {
         log.info("Getting merchant configuration")
+        delay(200)
         return MerchantConfiguration(
             mid, "Peter Merchant",
             listOf(Subscription(ServiceName.TELETRACK_REPORT), Subscription(ServiceName.SCORE))

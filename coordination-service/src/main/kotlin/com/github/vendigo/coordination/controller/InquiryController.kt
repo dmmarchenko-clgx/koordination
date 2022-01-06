@@ -1,5 +1,8 @@
-package com.github.vendigo.coordinationservice
+package com.github.vendigo.coordination.controller
 
+import com.github.vendigo.coordination.service.InquiryService
+import com.github.vendigo.coordination.model.InquiryRequest
+import com.github.vendigo.coordination.model.InquiryResponse
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController

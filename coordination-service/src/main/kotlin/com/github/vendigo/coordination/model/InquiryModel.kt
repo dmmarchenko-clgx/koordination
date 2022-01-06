@@ -1,4 +1,4 @@
-package com.github.vendigo.coordinationservice
+package com.github.vendigo.coordination.model
 
 import java.time.LocalDate
 import java.time.LocalDateTime

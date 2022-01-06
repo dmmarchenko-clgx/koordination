@@ -1,4 +1,4 @@
-package com.github.vendigo.coordinationservice
+package com.github.vendigo.coordination
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
