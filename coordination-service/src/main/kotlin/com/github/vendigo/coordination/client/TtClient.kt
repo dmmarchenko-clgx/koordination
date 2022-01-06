@@ -1,15 +1,17 @@
 package com.github.vendigo.coordination.client
 
-import com.github.vendigo.coordination.model.*
-import org.springframework.cloud.openfeign.FeignClient
-import org.springframework.web.bind.annotation.*
+import com.github.vendigo.coordination.model.Address
+import com.github.vendigo.coordination.model.ConsumerDetails
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.Query
 
-@FeignClient(name = "tt-mocks", url = "http://localhost:8070")
 interface TtClient {
 
-    @PostMapping("/consumer/normalize")
-    fun normalizeConsumer(@RequestBody consumer: ConsumerDetails): ConsumerDetails
-
+    @POST("/consumer/normalize")
+    suspend fun normalizeConsumer(@Body consumer: ConsumerDetails): ConsumerDetails
+/*
     @PostMapping("/consumer/validate")
     fun validateConsumer(@RequestBody consumer: ConsumerDetails): List<String>
 
@@ -17,15 +19,15 @@ interface TtClient {
     fun matchConsumer(@RequestBody matchRequest: ConsumerMatchRequest): Long
 
     @GetMapping("/consumer/{consumerMasterId}/history")
-    fun getConsumerHistory(@PathVariable("consumerMasterId") consumerMasterId: Long): ConsumerHistory
+    fun getConsumerHistory(@PathVariable("consumerMasterId") consumerMasterId: Long): ConsumerHistory*/
 
-    @GetMapping("/address/standardize")
-    fun standardizeAddress(@RequestParam("rawAddress") rawAddress: String): Address
+    @GET("/address/standardize")
+    suspend fun standardizeAddress(@Query("rawAddress") rawAddress: String): Address
 
-    @GetMapping("/generate-id")
-    fun generateId(): String
+    @GET("/generate-id")
+    suspend fun generateId(): String
 
-    @GetMapping("/merchant/{mid}/configuration")
+    /*@GetMapping("/merchant/{mid}/configuration")
     fun getMerchantConfiguration(@PathVariable("mid") mid: Long): MerchantConfiguration
 
     @GetMapping("/third-party-data")
@@ -35,5 +37,5 @@ interface TtClient {
     fun requestScore(@RequestParam("consumerMasterId") consumerMasterId: Long): String
 
     @PostMapping("/inquiry")
-    fun saveInquiry(@RequestBody inquiry: SaveInquiryRequest): Long
+    fun saveInquiry(@RequestBody inquiry: SaveInquiryRequest): Long*/
 }
