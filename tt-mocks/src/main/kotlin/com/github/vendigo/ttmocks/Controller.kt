@@ -14,7 +14,7 @@ class Controller {
     @PostMapping("/consumer/normalize")
     fun normalizeConsumer(@RequestBody consumer: ConsumerDetails): ConsumerDetails {
         log.info("Normalizing consumer")
-        delay(50)
+        delay(100)
         return consumer
             .copy(
                 firstName = consumer.firstName.uppercase(),
@@ -39,6 +39,7 @@ class Controller {
     @GetMapping("/consumer/{consumerMasterId}/history")
     fun getConsumerHistory(@PathVariable("consumerMasterId") consumerMasterId: Long): ConsumerHistory {
         log.info("Getting consumer history")
+        delay(500)
         return ConsumerHistory(
             consumerMasterId,
             consumerDetails = listOf(ConsumerDetails("10001", LocalDate.of(1990, Month.APRIL, 2), "Larisa", "Buro")),
@@ -50,7 +51,7 @@ class Controller {
     @GetMapping("/address/standardize")
     fun standardizeAddress(@RequestParam("rawAddress") rawAddress: String): Address {
         log.info("Standardizing address")
-        delay(50)
+        delay(200)
         val (city, state, postalCode) = rawAddress.split(", ")
         return Address(city, state, postalCode)
     }
@@ -58,14 +59,14 @@ class Controller {
     @GetMapping("/generate-id")
     fun generateId(): String {
         log.info("Generating id")
-        delay(50)
+        delay(100)
         return generateRandomId()
     }
 
     @GetMapping("/merchant/{mid}/configuration")
     fun getMerchantConfiguration(@PathVariable("mid") mid: Long): MerchantConfiguration {
         log.info("Getting merchant configuration")
-        delay(200)
+        delay(100)
         return MerchantConfiguration(
             mid, "Peter Merchant",
             listOf(Subscription(ServiceName.TELETRACK_REPORT), Subscription(ServiceName.SCORE))
@@ -75,18 +76,21 @@ class Controller {
     @GetMapping("/third-party-data")
     fun requestThirdPartyData(@RequestParam("ssn") ssn: String): String {
         log.info("Requesting third party data")
+        delay(600)
         return "Third party data for $ssn"
     }
 
     @GetMapping("/score")
     fun requestScore(@RequestParam("consumerMasterId") consumerMasterId: Long): String {
         log.info("Requesting score")
+        delay(200)
         return "Score for consumer $consumerMasterId is 200"
     }
 
     @PostMapping("/inquiry")
     fun saveInquiry(@RequestBody inquiry: SaveInquiryRequest): Long {
         log.info("Saving inquiry")
+        delay(300)
         return 1
     }
 }
