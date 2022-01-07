@@ -6,7 +6,7 @@ import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.async
 
 fun <T> lazyAsync(scope: CoroutineScope, initializer: suspend CoroutineScope.() -> T): Lazy<Deferred<T>> = lazy {
-    scope.async(start = CoroutineStart.LAZY) {
+    scope.async {
         initializer()
     }
 }
