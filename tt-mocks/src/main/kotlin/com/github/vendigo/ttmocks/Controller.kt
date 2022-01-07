@@ -81,10 +81,10 @@ class Controller {
     }
 
     @GetMapping("/score")
-    fun requestScore(@RequestParam("consumerMasterId") consumerMasterId: Long): String {
+    fun requestScore(@RequestParam("consumerId") consumerId: Long): String {
         log.info("Requesting score")
         delay(200)
-        return "Score for consumer $consumerMasterId is 200"
+        return "Score for consumer $consumerId is 200"
     }
 
     @PostMapping("/inquiry")

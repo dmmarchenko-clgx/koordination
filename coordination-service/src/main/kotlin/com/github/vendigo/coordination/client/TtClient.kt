@@ -30,7 +30,7 @@ interface TtClient {
     suspend fun requestThirdPartyData(@Query("ssn") ssn: String): String
 
     @GET("/score")
-    suspend fun requestScore(@Query("consumerMasterId") consumerMasterId: Long): String
+    suspend fun requestScore(@Query("consumerId") consumerId: Long): String
 
     @POST("/inquiry")
     suspend fun saveInquiry(@Body inquiry: SaveInquiryRequest): Long
