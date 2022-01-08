@@ -3,7 +3,12 @@ package com.github.vendigo.coordination.model
 import java.time.LocalDate
 import java.time.LocalDateTime
 
-data class InquiryRequest(val mid: Long, val requestedServices: List<ServiceName>, val consumer: ConsumerDetails, val address: String)
+data class InquiryRequest(
+    val mid: Long,
+    val requestedServices: List<ServiceName>,
+    val consumer: ConsumerDetails,
+    val address: String
+)
 
 data class InquiryResponse(
     val merchantName: String,
