@@ -11,8 +11,8 @@ data class InquiryRequest(
 )
 
 data class InquiryResponse(
-    val merchantName: String,
-    val transactionId: String, val consumerMasterId: Long, val consumerId: Long,
+    val merchantName: String? = null,
+    val transactionId: String? = null, val consumerMasterId: Long? = null, val consumerId: Long? = null,
     val consumerHistory: ConsumerHistory? = null,
     val thirdPartyResponse: String? = null, val scoringResponse: String? = null, val errors: List<String> = listOf()
 )
@@ -40,5 +40,5 @@ data class SaveInquiryRequest(
 )
 
 enum class ServiceName {
-    TELETRACK_REPORT, SCORE, BANKRUPTCY, THIRD_PARTY
+    TELETRACK_REPORT, SCORE, THIRD_PARTY
 }

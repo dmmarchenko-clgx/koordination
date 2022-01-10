@@ -10,8 +10,14 @@ import org.springframework.stereotype.Service
 @Service
 class InquiryService(val resolvers: Resolvers) {
 
-    suspend fun processInquiry(request: InquiryRequest): InquiryResponse = coroutineScope {
-        val context = FlowContext(request, this, resolvers)
-        context.inquiryResponse.await()
+    suspend fun processInquiry(request: InquiryRequest): InquiryResponse {
+        return try {
+            coroutineScope {
+                val context = FlowContext(request, this, resolvers)
+                context.inquiryResponse.await()
+            }
+        } catch (ex: Exception) {
+            InquiryResponse(errors = listOf("Something went wrong"))
+        }
     }
 }

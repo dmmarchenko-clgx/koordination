@@ -14,12 +14,25 @@ class InquiryResponseResolver(val ttClient: TtClient) : AsyncResolver<InquiryRes
         load {
             merchantConfig
             transactionId
+            validationErrors
+            standardizedAddress
+        }
+
+        val errors = validationErrors.await()
+        if (errors.isNotEmpty()) {
+            return InquiryResponse(
+                merchantName = merchantConfig.await().merchantName,
+                transactionId = transactionId.await(),
+                errors = errors
+            )
+        }
+
+        load {
             consumerMasterId
             consumerId
             consumerHistory
             thirdPartyData
             scoreResponse
-            validationErrors
         }
 
         return InquiryResponse(

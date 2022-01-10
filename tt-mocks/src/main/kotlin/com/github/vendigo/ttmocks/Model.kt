@@ -26,5 +26,5 @@ data class SaveInquiryRequest(
 )
 
 enum class ServiceName {
-    TELETRACK_REPORT, SCORE, BANKRUPTCY, THIRD_PARTY
+    TELETRACK_REPORT, SCORE, THIRD_PARTY
 }

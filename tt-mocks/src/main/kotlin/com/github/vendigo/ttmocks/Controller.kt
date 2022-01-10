@@ -26,6 +26,11 @@ class Controller {
     fun validateConsumer(@RequestBody consumer: ConsumerDetails): List<String> {
         log.info("Validating consumer")
         delay(100)
+
+        if (consumer.ssn.length != 6) {
+            return listOf("SSN should be 6 chars long")
+        }
+
         return listOf()
     }
 
@@ -69,7 +74,7 @@ class Controller {
         delay(100)
         return MerchantConfiguration(
             mid, "Peter Merchant",
-            listOf(Subscription(ServiceName.TELETRACK_REPORT), Subscription(ServiceName.SCORE))
+            listOf(Subscription(ServiceName.TELETRACK_REPORT), Subscription(ServiceName.SCORE), Subscription(ServiceName.THIRD_PARTY))
         )
     }
 
@@ -77,6 +82,11 @@ class Controller {
     fun requestThirdPartyData(@RequestParam("ssn") ssn: String): String {
         log.info("Requesting third party data")
         delay(600)
+
+        if (ssn == "100000") {
+            throw IllegalArgumentException("Unable to get third party data")
+        }
+
         return "Third party data for $ssn"
     }
 
