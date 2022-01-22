@@ -13,6 +13,6 @@ class Resolvers(
     val consumerMasterId: ConsumerMasterIdResolver,
     val score: ScoreResolver,
     val thirdPartyData: ThirdPartyDataResolver,
-    val validationErrors: ValidationErrorsResolver,
+    val consumerValidationErrors: ConsumerValidationErrorsResolver,
     val inquiryResponse: InquiryResponseResolver
 )

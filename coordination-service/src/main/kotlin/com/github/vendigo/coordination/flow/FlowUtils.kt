@@ -12,7 +12,6 @@ fun <T> FlowContext.resolver(resolver: AsyncResolver<T>): Lazy<Deferred<T>> = la
     this.scope.async {
         resolver.resolve(flowContext)
     }
-
 }
 
 interface AsyncResolver<T> {
