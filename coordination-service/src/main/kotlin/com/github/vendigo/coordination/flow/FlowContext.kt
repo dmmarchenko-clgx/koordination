@@ -13,7 +13,7 @@ class FlowContext(
     val normalizedConsumer by resolver(resolvers.normalizedConsumer)
     val standardizedAddress by resolver(resolvers.standardizedAddress)
     val merchantConfig by resolver(resolvers.merchantConfig)
-    val consumerValidationErrors by resolver(resolvers.consumerValidationErrors)
+    val validationErrors by resolver(resolvers.validationErrors)
     val consumerMasterId by resolver(resolvers.consumerMasterId)
     val consumerId by resolver(resolvers.consumerId)
     val scoreResponse by resolver(resolvers.score)
